@@ -10,17 +10,63 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import { useSnackbar } from "notistack";
 
 import Copyright from "../../components/Copyright";
 
 import styles from "./styles";
 
+import api from "../../services/api"
+
 const SignInLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/" {...props} />
 ));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = styles();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (firstName === "" || lastName === "" || email === "" || password === "") {
+      enqueueSnackbar("Please, check the fields", {
+        variant: "error"
+      });
+      return;
+
+    }
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      password
+    }
+    try {
+      await api.post('/users', payload)
+
+      props.history.push("/");
+
+    } catch (error) {
+      if (error.response.status === 400) {
+        enqueueSnackbar(error.response.data.error, {
+          variant: "error"
+        });
+      } else {
+
+        enqueueSnackbar("Sorry, server not found", {
+          variant: "error"
+        });
+      }
+
+    }
+
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -34,7 +80,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -46,6 +92,8 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={firstName}
+                  onChange={e => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -57,6 +105,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
+                  value={lastName}
+                  onChange={e => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -68,6 +118,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -80,6 +132,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>

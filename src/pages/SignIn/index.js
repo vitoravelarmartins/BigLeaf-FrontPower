@@ -18,6 +18,9 @@ import Copyright from "../../components/Copyright";
 
 import styles from "./styles";
 
+import api from "../../services/api";
+import { login } from "../../services/auth"
+
 const SignUpLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/signup" {...props} />
 ));
@@ -34,7 +37,7 @@ export default function SignIn(props) {
 
   const classes = styles();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (email === "" || password === "") {
@@ -49,8 +52,18 @@ export default function SignIn(props) {
       email,
       password
     };
+    try {
+      const { data } = await api.post('/sessions', payload)
 
-    props.history.push("/dashboard");
+      login(data.token)
+      props.history.push("/dashboard");
+    } catch (erro) {
+      enqueueSnackbar("Invalid e-mail or password", {
+        variant: "error"
+      });
+    }
+
+
   }
 
   return (
