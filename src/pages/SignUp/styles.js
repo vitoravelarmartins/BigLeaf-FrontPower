@@ -4,10 +4,16 @@ import LoginBackgroundImage from "../../assets/login-background.jpg";
 
 const styles = makeStyles(theme => ({
   root: {
-    height: "100vh"
+    height: "100vh",
+    width:" 200%",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundPosition: "center",    
+    backgroundColor: "white",
+
   },
   image: {
-    backgroundImage: `url(${LoginBackgroundImage})`,
+    // backgroundImage: `url(${LoginBackgroundImage})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
@@ -16,7 +22,8 @@ const styles = makeStyles(theme => ({
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+   
   },
   avatar: {
     margin: theme.spacing(1),

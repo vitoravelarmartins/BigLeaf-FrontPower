@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd"
 import Typography from "@material-ui/core/Typography";
 import { useSnackbar } from "notistack";
 
@@ -72,13 +73,13 @@ export default function SignUp(props) {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={2} component={Paper} elevation={6} square className={classes.paper}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <AssignmentIndIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Cadastro
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
