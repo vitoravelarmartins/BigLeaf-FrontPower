@@ -29,13 +29,15 @@ export default function SignUp(props) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [rg, setRg] = useState("");
 
   const { enqueueSnackbar } = useSnackbar();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (firstName === "" || lastName === "" || email === "" || password === "") {
+    if (firstName === "" || lastName === "" || email === "" || password === "" || cpf === "" || rg === "") {
       enqueueSnackbar("Please, check the fields", {
         variant: "error"
       });
@@ -46,7 +48,9 @@ export default function SignUp(props) {
       firstName,
       lastName,
       email,
-      password
+      password,
+      cpf,
+      rg,
     }
     try {
       await api.post('/users', payload)
@@ -73,7 +77,7 @@ export default function SignUp(props) {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={2} component={Paper} elevation={6} square className={classes.paper}>
+      <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <AssignmentIndIcon />
@@ -135,6 +139,32 @@ export default function SignUp(props) {
                   autoComplete="current-password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="cpf"
+                  label="CPF"
+                  name="cpf"
+                  autoComplete="CPF"
+                  value={lastName}
+                  onChange={e => setCpf(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="rg"
+                  label="RG"
+                  name="rg"
+                  autoComplete="RG"
+                  value={lastName}
+                  onChange={e => setRg(e.target.value)}
                 />
               </Grid>
             </Grid>

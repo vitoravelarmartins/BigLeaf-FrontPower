@@ -1,20 +1,24 @@
 import { makeStyles } from "@material-ui/core/styles";
-import pink from '@material-ui/core/colors/pink';
 import LoginBackgroundImage from "../../assets/login-background.jpg";
 
 const styles = makeStyles(theme => ({
 
+  
+
+
+
  root: {
+    margin: "0",
+    padding: "0",
     height: "100vh",
-    width:" 200%",
     alignItems: "center",
-    flexDirection: "row",
-    backgroundPosition: "center",    
-    backgroundColor: "white",
+    justifyContent:"row-reverse",
+    flexDirection: "continer",
+    backgroundPosition: "center", 
   },
   image: {
-   
-    backgroundRepeat: "no-repeat",
+    backgroundImage: `url(${LoginBackgroundImage})`,
+    //backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
   },
@@ -23,6 +27,7 @@ const styles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    
    
   },
   avatar: {
