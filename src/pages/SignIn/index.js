@@ -42,7 +42,7 @@ export default function SignIn(props) {
     e.preventDefault();
 
     if (email === "" || password === "") {
-      enqueueSnackbar("Invalid e-mail or password", {
+      enqueueSnackbar("E-mail ou senha inválidos", {
         variant: "error"
       });
 
@@ -59,7 +59,7 @@ export default function SignIn(props) {
       login(data.token)
       props.history.push("/dashboard");
     } catch (erro) {
-      enqueueSnackbar("Invalid e-mail or password", {
+      enqueueSnackbar("E-mail ou senha inválidos", {
         variant: "error"
       });
     }
@@ -86,7 +86,7 @@ export default function SignIn(props) {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -99,7 +99,7 @@ export default function SignIn(props) {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Senha"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -108,7 +108,7 @@ export default function SignIn(props) {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Lembrar de mim"
             />
             <Button
               type="submit"
@@ -117,17 +117,17 @@ export default function SignIn(props) {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Entrar
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link component={ForgotPasswordLink} variant="body2">
-                  Forgot password?
+                  Esqueceu a senha?
                 </Link>
               </Grid>
               <Grid item>
                 <Link component={SignUpLink} variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Cadastre-se"}
                 </Link>
               </Grid>
             </Grid>

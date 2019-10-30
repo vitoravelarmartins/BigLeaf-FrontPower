@@ -63,7 +63,7 @@ export default function SignUp(props) {
     e.preventDefault();
 
     if (firstName === "" || lastName === "" || email === "" || password === "" || cpf === "" || rg === "") {
-      enqueueSnackbar("Please, check the fields", {
+      enqueueSnackbar("Verifique os campos", {
         variant: "error"
       });
       return;
@@ -89,7 +89,7 @@ export default function SignUp(props) {
         });
       } else {
 
-        enqueueSnackbar("Sorry, server not found", {
+        enqueueSnackbar("Desculper, servidor não encontrado", {
           variant: "error"
         });
       }
@@ -108,7 +108,7 @@ export default function SignUp(props) {
             <AssignmentIndIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sing Up
+            Cadastre-se
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -120,16 +120,16 @@ export default function SignUp(props) {
                   required
                   fullWidth
                   id="FirstName"
-                  label="Name"
+                  label="Nome Completo"
                   autoFocus
                   value={firstName}
                   onChange={e => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <Button onClick={handleClickOpen}>Open the Blood Type</Button>
+              <Button onClick={handleClickOpen}>Tipo Sanguineo</Button>
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose} > 
-        <DialogTitle>Blood Type</DialogTitle>
+        <DialogTitle>Selecione</DialogTitle>
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
@@ -156,7 +156,7 @@ export default function SignUp(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            Cancelar
           </Button>
           <Button onClick={handleClose} color="primary">
             Ok
@@ -170,7 +170,7 @@ export default function SignUp(props) {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
                   value={email}
@@ -183,7 +183,7 @@ export default function SignUp(props) {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Senha"
                   type="password"
                   id="password"
                   autoComplete="current-password"
@@ -225,12 +225,12 @@ export default function SignUp(props) {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              Confirmar
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
                 <Link component={SignInLink} variant="body2">
-                  Already have an account? Sign in
+                 Já tem uma conta? Faça Login
                 </Link>
               </Grid>
             </Grid>
