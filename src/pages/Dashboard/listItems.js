@@ -17,25 +17,25 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Inicio" />
     </ListItem>
     <ListItem button component={Link} to="/accounts">
       <ListItemIcon>
         <AccountBalanceIcon />
       </ListItemIcon>
-      <ListItemText primary="Accounts" />
+      <ListItemText primary="Conta" />
     </ListItem>
     <ListItem button component={Link} to="/creditcards">
       <ListItemIcon>
         <CreditCardIcon />
       </ListItemIcon>
-      <ListItemText primary="Credit cards" />
+      <ListItemText primary="Documentos" />
     </ListItem>
     <ListItem button component={Link} to="/categories">
       <ListItemIcon>
         <LabelIcon />
       </ListItemIcon>
-      <ListItemText primary="Categories" />
+      <ListItemText primary="Categorias" />
     </ListItem>
   </div>
 );
@@ -47,13 +47,13 @@ export const secondaryListItems = (
       <ListItemIcon>
         <ArchiveIcon />
       </ListItemIcon>
-      <ListItemText primary="Import data" />
+      <ListItemText primary="Importa Documentos" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Export reports" />
+      <ListItemText primary="Exporta Documentos" />
     </ListItem>
   </div>
 );

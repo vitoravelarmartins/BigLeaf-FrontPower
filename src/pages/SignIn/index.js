@@ -14,6 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from '@material-ui/core/Container';
 import { useSnackbar } from "notistack";
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 
 import Copyright from "../../components/Copyright";
 
@@ -21,6 +22,7 @@ import styles from "./styles";
 
 import api from "../../services/api";
 import { login } from "../../services/auth"
+
 
 const SignUpLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/signup" {...props} />
@@ -35,6 +37,9 @@ export default function SignIn(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const themeInstance = {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+};
 
   const classes = styles();
 
@@ -116,6 +121,7 @@ export default function SignIn(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
+              
             >
               Sign In
             </Button>
