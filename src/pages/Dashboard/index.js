@@ -60,7 +60,7 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Pessoa Nome
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
