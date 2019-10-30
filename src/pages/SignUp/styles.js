@@ -7,6 +7,7 @@ const styles = makeStyles(theme => ({
     margin: "0",
     padding: "0",
     height: "100vh",
+    display: "flex",
     alignItems: "center",
     justifyContent:"row-reverse",
     flexDirection: "continer",

@@ -4,13 +4,19 @@ import LoginBackgroundImage from "../../assets/login-background.jpg";
 const styles = makeStyles(theme => ({
 
   
+  container: {
+    display: "flex", 
+    justifyContent: "center", 
+    marginTop: "150px"
+  },
 
 
+  
 
  root: {
     margin: "0",
     padding: "0",
-    height: "100vh",
+    height: "1000vh",
     alignItems: "center",
     justifyContent:"row-reverse",
     flexDirection: "continer",

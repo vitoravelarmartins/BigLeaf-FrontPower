@@ -11,7 +11,18 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd"
 import Typography from "@material-ui/core/Typography";
+import Container from '@material-ui/core/Container';
 import { useSnackbar } from "notistack";
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import Copyright from "../../components/Copyright";
 
@@ -31,8 +42,22 @@ export default function SignUp(props) {
   const [password, setPassword] = useState("");
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [age, setAge] = React.useState('');
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const handleChange = event => {
+    setAge(Number(event.target.value) || '');
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -74,45 +99,70 @@ export default function SignUp(props) {
   }
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
+    <>
+      <CssBaseline/>
+      <Container style={{display: "flex", justifyContent: "center", marginTop: "150px",width:"100%"}}>
+        <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <AssignmentIndIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Cadastro
+            Sing Up
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="fname"
-                  name="firstName"
+                  name="Name"
                   variant="outlined"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="FirstName"
+                  label="Name"
                   autoFocus
                   value={firstName}
                   onChange={e => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  value={lastName}
-                  onChange={e => setLastName(e.target.value)}
-                />
+              <Button onClick={handleClickOpen}>Open the Blood Type</Button>
+      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose} > 
+        <DialogTitle>Blood Type</DialogTitle>
+        <DialogContent>
+          <form className={classes.container}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="demo-dialog-native" ></InputLabel>
+              <Select
+                native
+                value={age}
+                onChange={handleChange}
+                input={<Input id="demo-dialog-native" />}
+              >
+                <option value="" />
+                <option value={10}>O +       </option>
+                <option value={20}>O -       </option>
+                <option value={40}>A +       </option>
+                <option value={50}>A -       </option>
+                <option value={60}>B +       </option>
+                <option value={70}>B -       </option>
+                <option value={80}>AB +      </option>
+                <option value={90}>AB -      </option>
+               
+              </Select>
+            </FormControl>
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -190,6 +240,9 @@ export default function SignUp(props) {
           </form>
         </div>
       </Grid>
-    </Grid>
+      </Container>
+      </>
+  
   );
 }
+

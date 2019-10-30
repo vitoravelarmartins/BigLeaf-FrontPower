@@ -12,6 +12,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import Container from '@material-ui/core/Container';
 import { useSnackbar } from "notistack";
 
 import Copyright from "../../components/Copyright";
@@ -67,10 +68,10 @@ export default function SignIn(props) {
   }
 
   return (
-    <Grid  container component="main" className={classes.root}>
+    <>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-          <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
+      <Container style={{display: "flex", justifyContent: "center", marginTop: "150px",width:"100%"}}>
+        <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -135,7 +136,8 @@ export default function SignIn(props) {
             </Box>
           </form>
         </div>
-      </Grid>
-    </Grid>
-  );
+        </Grid>
+      </Container>
+   </>
+);
 }
