@@ -9,9 +9,9 @@ export default function Copyright() {
       {"Copyright © "}
       <Link
         color="inherit"
-        href="https://vestibular.unifeob.edu.br/analise-e-desenvolvimento-de-sistemas/"
+        href="https://github.com/vitoravelarmartins/BigLeaf-FrontPower"
       >
-        ADS UNIFEOB
+        BigLeaf
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
