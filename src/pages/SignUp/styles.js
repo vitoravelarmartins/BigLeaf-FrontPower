@@ -4,16 +4,18 @@ import LoginBackgroundImage from "../../assets/login-background.jpg";
 
 const styles = makeStyles(theme => ({
   root: {
+    margin: "0",
+    padding: "0",
     height: "100vh",
-    width:" 200%",
+    display: "flex",
     alignItems: "center",
-    flexDirection: "row",
-    backgroundPosition: "center",    
-    backgroundColor: "white",
+    justifyContent:"row-reverse",
+    flexDirection: "continer",
+    backgroundPosition: "center", 
 
   },
   image: {
-    // backgroundImage: `url(${LoginBackgroundImage})`,
+     backgroundImage: `url(${LoginBackgroundImage})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
