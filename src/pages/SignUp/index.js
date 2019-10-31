@@ -23,6 +23,9 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import red from '@material-ui/core/colors/red';
+
+
 
 import Copyright from "../../components/Copyright";
 
@@ -33,22 +36,25 @@ import api from "../../services/api"
 const SignInLink = React.forwardRef((props, ref) => (
   <RouterLink innerRef={ref} to="/" {...props} />
 ));
+const primary = red[500];
 
 export default function SignUp(props) {
   const classes = styles();
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  //const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState('');
+  const [dataNasc, setDataNasc] = React.useState("");
 
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = event => {
-    setAge(Number(event.target.value) || '');
+
+    setAge(String(event.target.value) || '');
   };
 
   const handleClickOpen = () => {
@@ -59,10 +65,13 @@ export default function SignUp(props) {
     setOpen(false);
   };
 
+
+
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (firstName === "" || lastName === "" || email === "" || password === "" || cpf === "" || rg === "") {
+    if (firstName === "" || email === "" || password === "" || cpf === "" || rg === "" || dataNasc === "") {
       enqueueSnackbar("Verifique os campos", {
         variant: "error"
       });
@@ -71,11 +80,13 @@ export default function SignUp(props) {
     }
     const payload = {
       firstName,
-      lastName,
+      // lastName,
       email,
       password,
       cpf,
       rg,
+      dataNasc,
+
     }
     try {
       await api.post('/users', payload)
@@ -89,7 +100,7 @@ export default function SignUp(props) {
         });
       } else {
 
-        enqueueSnackbar("Desculper, servidor não encontrado", {
+        enqueueSnackbar("Desculpe, servidor não encontrado", {
           variant: "error"
         });
       }
@@ -100,149 +111,168 @@ export default function SignUp(props) {
 
   return (
     <>
-      <CssBaseline/>
-      <Container style={{display: "flex", justifyContent: "center", marginTop: "150px",width:"100%"}}>
+      <CssBaseline />
+      <Container style={{ display: "flex", justifyContent: "center", marginTop: "150px", width: "100%" }}>
         <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <AssignmentIndIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Cadastre-se
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <AssignmentIndIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Cadastre-se
           </Typography>
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="Name"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="FirstName"
-                  label="Nome Completo"
-                  autoFocus
-                  value={firstName}
-                  onChange={e => setFirstName(e.target.value)}
-                />
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    name="Name"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="FirstName"
+                    label="Nome Completo"
+                    autoFocus
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <form className={classes.container} noValidate>
+                    <TextField
+                      id="date"
+                      label="Data de Nascimento"
+                      type="date"
+                      defaultValue="2001-01-01"
+                      className={classes.textField}
+                      value={dataNasc}
+                      onChange={e => setDataNasc(e.target.value)}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </form>
+                </Grid>
+                <Grid item xs={12} style={{ justifyContent: "center", display: "flex", }} >
+                  <Button onClick={handleClickOpen} style={{ backgroundColor: "#f44336", justifyContent: "center", display: "flex", width: "100%", color: "#fff" }} >Tipo Sanguíneo: {age}</Button>
+                  <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}  >
+                    <DialogTitle style={{ justifyContent: "center", display: "flex", backgroundColor: "#f44336", color: "#fff" }}>Selecione</DialogTitle>
+                    <DialogContent >
+                      <form className={classes.container}  >
+                        <FormControl className={classes.formControl} >
+                          <InputLabel htmlFor="demo-dialog-native" ></InputLabel>
+                          <Select style={{ width: "100px" }}
+                            native
+                            value={age}
+                            onChange={handleChange}
+                            input={<Input id="demo-dialog-native" />}
+                          >
+                            <option value="" />
+                            <option value={"O+"}>O +       </option>
+                            <option value={"O-"}>O -       </option>
+                            <option value={"A+"}>A +       </option>
+                            <option value={"A-"}>A -       </option>
+                            <option value={"B+"}>B +       </option>
+                            <option value={"B-"}>B -       </option>
+                            <option value={"AB+"}>AB +      </option>
+                            <option value={"AB-"}>AB -      </option>
+
+                          </Select>
+                        </FormControl>
+                      </form>
+                    </DialogContent>
+                    <DialogActions >
+                      <Button onClick={handleClose} color={primary}>
+                        Cancelar
+          </Button>
+                      <Button onClick={handleClose} color={primary}>
+                        Ok
+          </Button>
+                    </DialogActions>
+                  </Dialog>
+
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Senha"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="cpf"
+                    label="CPF"
+                    name="cpf"
+                    autoComplete="CPF"
+                    value={cpf}
+                    onChange={e => setCpf(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="rg"
+                    label="RG"
+                    name="rg"
+                    autoComplete="RG"
+                    value={rg}
+                    onChange={e => setRg(e.target.value)}
+                  />
+                </Grid>
+
               </Grid>
-              <Grid item xs={12} sm={6}>
-              <Button onClick={handleClickOpen}>Tipo Sanguineo</Button>
-      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose} > 
-        <DialogTitle>Selecione</DialogTitle>
-        <DialogContent>
-          <form className={classes.container}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="demo-dialog-native" ></InputLabel>
-              <Select
-                native
-                value={age}
-                onChange={handleChange}
-                input={<Input id="demo-dialog-native" />}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
               >
-                <option value="" />
-                <option value={10}>O +       </option>
-                <option value={20}>O -       </option>
-                <option value={40}>A +       </option>
-                <option value={50}>A -       </option>
-                <option value={60}>B +       </option>
-                <option value={70}>B -       </option>
-                <option value={80}>AB +      </option>
-                <option value={90}>AB -      </option>
-               
-              </Select>
-            </FormControl>
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Senha"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="cpf"
-                  label="CPF"
-                  name="cpf"
-                  autoComplete="CPF"
-                  value={lastName}
-                  onChange={e => setCpf(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="rg"
-                  label="RG"
-                  name="rg"
-                  autoComplete="RG"
-                  value={lastName}
-                  onChange={e => setRg(e.target.value)}
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Confirmar
+                Confirmar
             </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link component={SignInLink} variant="body2">
-                 Já tem uma conta? Faça Login
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link component={SignInLink} variant="body2">
+                    Já tem uma conta? Faça Login
                 </Link>
+                </Grid>
               </Grid>
-            </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
-          </form>
-        </div>
-      </Grid>
+              <Box mt={5}>
+                <Copyright />
+              </Box>
+            </form>
+          </div>
+        </Grid>
       </Container>
-      </>
-  
+    </>
+
   );
 }
 
