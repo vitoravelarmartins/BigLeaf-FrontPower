@@ -40,21 +40,21 @@ const primary = red[500];
 
 export default function SignUp(props) {
   const classes = styles();
-  const [firstName, setFirstName] = useState("");
+  const [name, setName] = useState("");
   //const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
   const [open, setOpen] = React.useState(false);
-  const [age, setAge] = React.useState('');
+  const [tipoSanguineo, setTipoSanguineo] = React.useState('');
   const [dataNasc, setDataNasc] = React.useState("");
 
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = event => {
 
-    setAge(String(event.target.value) || '');
+    setTipoSanguineo(String(event.target.value) || '');
   };
 
   const handleClickOpen = () => {
@@ -71,7 +71,7 @@ export default function SignUp(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (firstName === "" || email === "" || password === "" || cpf === "" || rg === "" || dataNasc === "") {
+    if (name === "" || email === "" || password === "" || cpf === "" || rg === "" || dataNasc === "") {
       enqueueSnackbar("Verifique os campos", {
         variant: "error"
       });
@@ -79,7 +79,7 @@ export default function SignUp(props) {
 
     }
     const payload = {
-      firstName,
+      name,
       // lastName,
       email,
       password,
@@ -115,31 +115,52 @@ export default function SignUp(props) {
       <Container style={{ display: "flex", justifyContent: "center", marginTop: "150px", width: "100%" }}>
         <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
           <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
+            <Avatar className={classes.avatar} style={{ background: "#1b5e20" }}>
               <AssignmentIndIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               Cadastre-se
           </Typography>
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} noValidate onSubmit={handleSubmit} >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    autoComplete="fname"
-                    name="Name"
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline
+                      }
+                    }}
+                    autoComplete="name"
+                    name="name"
                     variant="outlined"
                     required
                     fullWidth
-                    id="FirstName"
+                    id="name"
                     label="Nome Completo"
                     autoFocus
-                    value={firstName}
-                    onChange={e => setFirstName(e.target.value)}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <form className={classes.container} noValidate>
                     <TextField
+                      InputProps={{
+                        classes: {
+                          root: classes.cssOutlinedInput,
+                          focused: classes.cssFocused,
+                          notchedOutline: classes.notchedOutline
+                        }
+                      }}
+                      style={{ color: "#1b5e20" }}
                       id="date"
                       label="Data de Nascimento"
                       type="date"
@@ -149,12 +170,16 @@ export default function SignUp(props) {
                       onChange={e => setDataNasc(e.target.value)}
                       InputLabelProps={{
                         shrink: true,
+                        classes: {
+                          root: classes.cssLabel,
+                          focused: classes.cssFocused
+                        }
                       }}
                     />
                   </form>
                 </Grid>
                 <Grid item xs={12} style={{ justifyContent: "center", display: "flex", }} >
-                  <Button onClick={handleClickOpen} style={{ backgroundColor: "#f44336", justifyContent: "center", display: "flex", width: "100%", color: "#fff" }} >Tipo Sanguíneo: {age}</Button>
+                  <Button onClick={handleClickOpen} style={{ backgroundColor: "#f44336", justifyContent: "center", display: "flex", width: "100%", color: "#fff" }} >Tipo Sanguíneo: {tipoSanguineo}</Button>
                   <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}  >
                     <DialogTitle style={{ justifyContent: "center", display: "flex", backgroundColor: "#f44336", color: "#fff" }}>Selecione</DialogTitle>
                     <DialogContent >
@@ -163,7 +188,7 @@ export default function SignUp(props) {
                           <InputLabel htmlFor="demo-dialog-native" ></InputLabel>
                           <Select style={{ width: "100px" }}
                             native
-                            value={age}
+                            value={tipoSanguineo}
                             onChange={handleChange}
                             input={<Input id="demo-dialog-native" />}
                           >
@@ -195,6 +220,19 @@ export default function SignUp(props) {
 
                 <Grid item xs={12}>
                   <TextField
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline
+                      }
+                    }}
                     variant="outlined"
                     required
                     fullWidth
@@ -208,6 +246,19 @@ export default function SignUp(props) {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline
+                      }
+                    }}
                     variant="outlined"
                     required
                     fullWidth
@@ -222,6 +273,19 @@ export default function SignUp(props) {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline
+                      }
+                    }}
                     variant="outlined"
                     required
                     fullWidth
@@ -235,6 +299,19 @@ export default function SignUp(props) {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline
+                      }
+                    }}
                     variant="outlined"
                     required
                     fullWidth
@@ -249,6 +326,7 @@ export default function SignUp(props) {
 
               </Grid>
               <Button
+                style={{ background: "#1b5e20", color: "#fff" }}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -259,7 +337,7 @@ export default function SignUp(props) {
             </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link component={SignInLink} variant="body2">
+                  <Link component={SignInLink} variant="body2" style={{ color: "#1b5e20" }}>
                     Já tem uma conta? Faça Login
                 </Link>
                 </Grid>

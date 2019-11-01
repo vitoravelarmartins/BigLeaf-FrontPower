@@ -3,19 +3,32 @@ import { makeStyles } from "@material-ui/core/styles";
 import LoginBackgroundImage from "../../assets/login-background.jpg";
 
 const styles = makeStyles(theme => ({
+
+  cssLabel: {
+    "&$cssFocused": {
+      color: "#357a38 !important"
+    }
+  },
+
+  cssOutlinedInput: {
+    "&$cssFocused $notchedOutline": {
+      borderColor: "#4caf50 !important"
+    }
+  },
+
   root: {
     margin: "0",
     padding: "0",
     height: "100vh",
     display: "flex",
     alignItems: "center",
-    justifyContent:"row-reverse",
+    justifyContent: "row-reverse",
     flexDirection: "continer",
-    backgroundPosition: "center", 
+    backgroundPosition: "center",
 
   },
   image: {
-     backgroundImage: `url(${LoginBackgroundImage})`,
+    backgroundImage: `url(${LoginBackgroundImage})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
@@ -25,7 +38,7 @@ const styles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-   
+
   },
   avatar: {
     margin: theme.spacing(1),
@@ -37,7 +50,10 @@ const styles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
+
+  cssFocused: {},
+  notchedOutline: {}
 }));
 
 export default styles;
