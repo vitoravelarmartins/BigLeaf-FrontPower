@@ -77,7 +77,7 @@ export default function SignIn(props) {
     <>
       <CssBaseline />
       <Container style={{ display: "flex", justifyContent: "center", marginTop: "150px", width: "100%" }}>
-        <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square >
+        <Grid item xs={true} sm={2} md={4} component={Paper} elevation={6} square   >
           <div className={classes.paper}>
             <Avatar className={classes.avatar} style={{ background: "#1b5e20" }}>
               <LockOutlinedIcon />
@@ -169,6 +169,7 @@ export default function SignIn(props) {
                 <Copyright />
               </Box>
             </form>
+
           </div>
         </Grid>
       </Container>

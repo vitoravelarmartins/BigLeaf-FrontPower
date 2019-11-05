@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -16,13 +16,21 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
+
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
 // import Orders from "./Orders";
 
+import Copyright from "../../components/Copyright";
+
 import styles from "./styles";
 
+import api from "../../services/api"
+
+
+
 export default function Dashboard() {
+  const [email, setEmail] = useState("");
   const classes = styles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -32,8 +40,9 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  console.log({ email })
   return (
+
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -59,8 +68,9 @@ export default function Dashboard() {
             color="inherit"
             noWrap
             className={classes.title}
+            value={email}
           >
-            Pessoa Nome
+
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

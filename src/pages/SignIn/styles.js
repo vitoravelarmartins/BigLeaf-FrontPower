@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import LoginBackgroundImage from "../../assets/login-background.jpg";
+import LoginBackgroundImage from "../../assets/login-background.png";
 
 const styles = makeStyles(theme => ({
 
@@ -35,10 +35,11 @@ const styles = makeStyles(theme => ({
     flexDirection: "continer",
     backgroundPosition: "center",
 
+
   },
   image: {
     backgroundImage: `url(${LoginBackgroundImage})`,
-    //backgroundRepeat: "no-repeat",
+    backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
   },

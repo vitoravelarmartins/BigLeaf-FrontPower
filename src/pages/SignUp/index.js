@@ -71,7 +71,7 @@ export default function SignUp(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (name === "" || email === "" || password === "" || cpf === "" || rg === "" || dataNasc === "") {
+    if (name === "" || email === "" || password === "" || cpf === "" || rg === "" || dataNasc === "" || tipoSanguineo === "") {
       enqueueSnackbar("Verifique os campos", {
         variant: "error"
       });
@@ -86,6 +86,7 @@ export default function SignUp(props) {
       cpf,
       rg,
       dataNasc,
+      tipoSanguineo,
 
     }
     try {
