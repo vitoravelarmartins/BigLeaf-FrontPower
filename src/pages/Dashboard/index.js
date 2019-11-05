@@ -27,9 +27,12 @@ import styles from "./styles";
 
 import api from "../../services/api"
 
+import { getLoggedUser } from "../../services/auth"
+
 
 
 export default function Dashboard() {
+  const name = getLoggedUser().name
   const [email, setEmail] = useState("");
   const classes = styles();
   const [open, setOpen] = React.useState(true);
@@ -68,8 +71,9 @@ export default function Dashboard() {
             color="inherit"
             noWrap
             className={classes.title}
-            value={email}
+            value={name}
           >
+            {name}
 
           </Typography>
           <IconButton color="inherit">

@@ -61,10 +61,11 @@ export default function SignIn(props) {
     };
     try {
       const { data } = await api.post('/sessions', payload)
-
-      login(data.token)
+      console.log(data)
+      login(data)
       props.history.push("/dashboard");
     } catch (erro) {
+      console.log(erro)
       enqueueSnackbar("E-mail ou senha inválidos", {
         variant: "error"
       });
