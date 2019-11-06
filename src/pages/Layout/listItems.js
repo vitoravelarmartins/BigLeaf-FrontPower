@@ -10,50 +10,54 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import LabelIcon from "@material-ui/icons/Label";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import ArchiveIcon from "@material-ui/icons/Archive";
+import PersonIcon from '@material-ui/icons/Person';
+import FolderIcon from '@material-ui/icons/Folder';
+import ChatIcon from '@material-ui/icons/Chat';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 
 export const mainListItems = (
   <div>
-    <ListItem button component={Link} to="/app/perfil">
+    <ListItem button component={Link} to="/app/perfil" style={{ color: "#1b5e20" }}>
       <ListItemIcon>
-        <DashboardIcon />
+        <PersonIcon style={{ color: "#1b5e20" }} />
       </ListItemIcon>
       <ListItemText primary="Perfil" />
     </ListItem>
-    <ListItem button component={Link} to="/app/arquivos">
+    <ListItem button component={Link} to="/app/arquivos" style={{ color: "#1b5e20" }}>
       <ListItemIcon>
-        <AccountBalanceIcon />
+        <FolderIcon style={{ color: "#1b5e20" }} />
       </ListItemIcon>
       <ListItemText primary="Arquivos" />
     </ListItem>
-    <ListItem button component={Link} to="/creditcards">
+    {/* <ListItem button component={Link} to="/creditcards">
       <ListItemIcon>
         <CreditCardIcon />
       </ListItemIcon>
-      <ListItemText primary="Documentos" />
+      <ListItemText primary="Chat" />
     </ListItem>
     <ListItem button component={Link} to="/categories">
       <ListItemIcon>
         <LabelIcon />
       </ListItemIcon>
       <ListItemText primary="Categorias" />
-    </ListItem>
+    </ListItem> */}
   </div>
 );
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>More options</ListSubheader>
+    <ListSubheader inset>Extras</ListSubheader>
     <ListItem button>
       <ListItemIcon>
-        <ArchiveIcon />
+        <ChatIcon style={{ color: "#1b5e20" }} />
       </ListItemIcon>
-      <ListItemText primary="Importa Documentos" />
+      <ListItemText primary="Chat" style={{ color: "#1b5e20" }} />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <AssignmentIcon />
+        <LocalHospitalIcon style={{ color: "#1b5e20" }} />
       </ListItemIcon>
-      <ListItemText primary="Exporta Documentos" />
+      <ListItemText primary="Historico Medico" style={{ color: "#1b5e20" }} />
     </ListItem>
   </div>
 );
