@@ -16,6 +16,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
+import Perfil from "../../components/Perfil"
+import Arquivos from "../../components/Arquivos"
+import {  Route } from "react-router-dom";
 
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
@@ -28,6 +31,7 @@ import styles from "./styles";
 import api from "../../services/api"
 
 import { getLoggedUser } from "../../services/auth"
+import Routes from "../../routes";
 
 
 
@@ -104,28 +108,8 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart 
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            */}
-
-            {/* Recent Deposits 
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            */}
-            {/* Recent Orders 
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
-            */}
+            <Route exact path="/app/perfil" component={Perfil}/>
+            <Route exact path="/app/arquivos" component={Arquivos}/>
           </Grid>
         </Container>
       </main>
