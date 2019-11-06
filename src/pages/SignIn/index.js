@@ -63,7 +63,7 @@ export default function SignIn(props) {
       const { data } = await api.post('/sessions', payload)
       console.log(data)
       login(data)
-      props.history.push("/dashboard");
+      props.history.push("/app");
     } catch (erro) {
       console.log(erro)
       enqueueSnackbar("E-mail ou senha inválidos", {

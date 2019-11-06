@@ -13,17 +13,17 @@ import ArchiveIcon from "@material-ui/icons/Archive";
 
 export const mainListItems = (
   <div>
-    <ListItem button component={Link} to="/dashboard">
+    <ListItem button component={Link} to="/app/perfil">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Inicio" />
+      <ListItemText primary="Perfil" />
     </ListItem>
-    <ListItem button component={Link} to="/accounts">
+    <ListItem button component={Link} to="/app/arquivos">
       <ListItemIcon>
         <AccountBalanceIcon />
       </ListItemIcon>
-      <ListItemText primary="Conta" />
+      <ListItemText primary="Arquivos" />
     </ListItem>
     <ListItem button component={Link} to="/creditcards">
       <ListItemIcon>
