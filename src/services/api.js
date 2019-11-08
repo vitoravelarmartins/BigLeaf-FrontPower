@@ -6,6 +6,10 @@ const api = axios.create({
   baseURL: "http://localhost:3333"
 });
 
+const getHistorico = axios.get({
+  baseURL: "http://localhost:3333/historico"
+})
+
 api.interceptors.request.use(async config => {
 
   if (isAuthenticated()) {

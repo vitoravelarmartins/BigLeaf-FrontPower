@@ -5,7 +5,7 @@ import React from "react"
 export default function Arquivos() {
   return (
 
-    <h1>de</h1>
+    <h1>Arquivos</h1>
   )
 
 }

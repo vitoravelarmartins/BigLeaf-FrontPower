@@ -18,6 +18,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Perfil from "../../components/Perfil"
 import Arquivos from "../../components/Arquivos"
+import Historico from "../../components/Historico"
+import FormHistorico from "../../components/FormHistorico"
 import { Route } from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ImagemLogo from '../../assets/logo.png'
@@ -125,6 +127,8 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Route exact path="/app/perfil" component={Perfil} />
             <Route exact path="/app/arquivos" component={Arquivos} />
+            <Route exact path="/app/historico" component={Historico} />
+            <Route exact path="/app/formhistorico" component={FormHistorico} />
           </Grid>
         </Container>
       </main>

@@ -9,11 +9,7 @@ import FolderIcon from '@material-ui/icons/Folder';
 import ChatIcon from '@material-ui/icons/Chat';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 
-
-
-
 export const mainListItems = (
-
   <div>
     <ListItem button component={Link} to="/app/perfil" style={{ color: "#1b5e20" }}>
       <ListItemIcon>
