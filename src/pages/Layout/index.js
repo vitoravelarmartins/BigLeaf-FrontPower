@@ -129,6 +129,9 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Route exact path="/app/perfil" component={Perfil} />
             <Route exact path="/app/arquivos" component={Upload} />
+
+            <Route exact path="/app/arquivos" component={Arquivos} />
+
             <Route exact path="/app/historico" component={Historico} />
             <Route exact path="/app/formhistorico" component={FormHistorico} />
           </Grid>
