@@ -18,7 +18,12 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Perfil from "../../components/Perfil"
 import Arquivos from "../../components/Arquivos"
-import {  Route } from "react-router-dom";
+import Historico from "../../components/Historico"
+import FormHistorico from "../../components/FormHistorico"
+import { Route } from "react-router-dom";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ImagemLogo from '../../assets/logo.png'
+import ImagemLogo2 from '../../assets/logo2.png'
 
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
@@ -32,7 +37,9 @@ import api from "../../services/api"
 
 import { getLoggedUser } from "../../services/auth"
 import Routes from "../../routes";
-
+import Upload from "../../components/upload/Upload";
+import Progress from "../../components/progress/Progress";
+import Dropzone from "../../components/dropzone/Dropzone";
 
 
 export default function Dashboard() {
@@ -46,6 +53,11 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const sair = () => {
+    localStorage.removeItem("@money-web-app-Token")
+    document.location.reload(true);
+  }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   console.log({ email })
   return (
@@ -56,8 +68,9 @@ export default function Dashboard() {
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} style={{ backgroundColor: "#001F00" }}>
           <IconButton
+
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -69,6 +82,7 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             component="h1"
             variant="h6"
@@ -79,12 +93,14 @@ export default function Dashboard() {
           >
             {name}
 
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+          </Typography >
+          <img src={ImagemLogo2} alt='Logo da aplicação' />
+          <IconButton color="inherit" onClick={sair}>
+            <Badge /*badgeContent={3}*/ color="secondary">
+              <ExitToAppIcon />
             </Badge>
           </IconButton>
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -94,10 +110,13 @@ export default function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
+        <div className={classes.toolbarIcon} >
+          <img src={ImagemLogo} alt='Logo da aplicação' />
           <IconButton onClick={handleDrawerClose}>
+
             <ChevronLeftIcon />
           </IconButton>
+
         </div>
         <Divider />
         <List>{mainListItems}</List>
@@ -108,8 +127,10 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Route exact path="/app/perfil" component={Perfil}/>
-            <Route exact path="/app/arquivos" component={Arquivos}/>
+            <Route exact path="/app/perfil" component={Perfil} />
+            <Route exact path="/app/arquivos" component={Upload} />
+            <Route exact path="/app/historico" component={Historico} />
+            <Route exact path="/app/formhistorico" component={FormHistorico} />
           </Grid>
         </Container>
       </main>
