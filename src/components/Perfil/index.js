@@ -15,6 +15,10 @@ import CardFooter from "../../components/Card/CardFooter.js";
 
 import avatar from "../../assets/img/faces/marc.jpg";
 
+import api from "../../services/api"
+
+import { getLoggedUser } from "../../services/auth"
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -37,6 +41,8 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function Perfil() {
+  const name = getLoggedUser().name
+
   const classes = useStyles();
   return (
     <div>
@@ -45,25 +51,16 @@ export default function Perfil() {
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Seu Profile</h4>
-              <p className={classes.cardCategoryWhite}></p> 
-            </CardHeader > 
+              <p className={classes.cardCategoryWhite}></p>
+            </CardHeader >
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={5}>
-                  <CustomInput
-                    id="company"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      disabled: true
-                    }}
-                  />
-                </GridItem>
+
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Nome"
+                    labelText={name}
                     id="username"
+                    value={name}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -89,45 +86,10 @@ export default function Perfil() {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Sobrenome"
-                    id="last-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
+
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Cidade"
-                    id="city"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Pais"
-                    id="country"
-                    value="A+"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Cep"
-                    id="postal-code"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
+
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
@@ -159,7 +121,7 @@ export default function Perfil() {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h4 className={classes.cardTitle}>Vitor Avelar Martins</h4>
+              <h4 className={classes.cardTitle}>{name}</h4>
               <p className={classes.description}>
                 {"'"}In the end, there will be no one left. We are no longer innocent. We are lost from this world From home. We longer believe in such things. We only believe in war
               </p>

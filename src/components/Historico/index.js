@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -43,30 +43,33 @@ export default function Historico() {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
+    const [historicos, setHistoricos] = useState([])
 
     async function getHistorico() {
         const { data } = await api.get('/historico')
-        console.log(JSON.stringify({ data }))
-        const nada = JSON.stringify({ data })
+        
+        setHistoricos(data)
 
-        return nada
     }
-    const historico = useState("")
+    
+    useEffect(() =>getHistorico(),[])
+    
     console.log("sove", getHistorico())
 
     return (
         <>
-            <div >
+            {historicos.map(historico => (
+                <div >
                 <Card className={classes.card} x>
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            Cronica
+                            {historico.tipo}
               </Typography>
                         <Typography variant="h5" component="h2">
-                            DOR DE CABEÇA
+                            {historico.doenca}
               </Typography>
                         <Typography className={classes.pos} color="textSecondary">
-                            Examinado
+                            {historico.descricao}
               </Typography>
                         <Typography variant="body2" component="p" value={historico.id}>
 
@@ -79,6 +82,7 @@ export default function Historico() {
                     </CardActions>
                 </Card>
             </div>
+            ))}
             <div>
                 <Card style={{ justifyContent: "center" }}>
                     <CardContent>
