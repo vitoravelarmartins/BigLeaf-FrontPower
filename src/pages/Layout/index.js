@@ -16,14 +16,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
-import Perfil from "../../components/Perfil"
-import Arquivos from "../../components/Arquivos"
-import Historico from "../../components/Historico"
-import FormHistorico from "../../components/FormHistorico"
+import Perfil from "../../components/Perfil";
+import Arquivos from "../../components/Arquivos";
+import Historico from "../../components/Historico";
+import FormHistorico from "../../components/FormHistorico";
 import { Route } from "react-router-dom";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ImagemLogo from '../../assets/logo.png'
-import ImagemLogo2 from '../../assets/logo2.png'
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ImagemLogo from "../../assets/logo.png";
+import ImagemLogo2 from "../../assets/logo2.png";
 
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
@@ -33,17 +33,17 @@ import Copyright from "../../components/Copyright";
 
 import styles from "./styles";
 
-import api from "../../services/api"
+import api from "../../services/api";
 
-import { getLoggedUser } from "../../services/auth"
+import { getLoggedUser } from "../../services/auth";
 import Routes from "../../routes";
 import Upload from "../../components/upload/Upload";
 import Progress from "../../components/progress/Progress";
 import Dropzone from "../../components/dropzone/Dropzone";
-
+import Lightbox from "../..";
 
 export default function Dashboard() {
-  const name = getLoggedUser().name
+  const name = getLoggedUser().name;
   const [email, setEmail] = useState("");
   const classes = styles();
   const [open, setOpen] = React.useState(true);
@@ -55,22 +55,23 @@ export default function Dashboard() {
   };
 
   const sair = () => {
-    localStorage.removeItem("@money-web-app-Token")
+    localStorage.removeItem("@money-web-app-Token");
     document.location.reload(true);
-  }
+  };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  console.log({ email })
+  console.log({ email });
   return (
-
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <Toolbar className={classes.toolbar} style={{ backgroundColor: "#001F00" }}>
+        <Toolbar
+          className={classes.toolbar}
+          style={{ backgroundColor: "#001F00" }}
+        >
           <IconButton
-
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -92,15 +93,13 @@ export default function Dashboard() {
             value={name}
           >
             {name}
-
-          </Typography >
-          <img src={ImagemLogo2} alt='Logo da aplicação' />
+          </Typography>
+          <img src={ImagemLogo2} alt="Logo da aplicação" />
           <IconButton color="inherit" onClick={sair}>
             <Badge /*badgeContent={3}*/ color="secondary">
               <ExitToAppIcon />
             </Badge>
           </IconButton>
-
         </Toolbar>
       </AppBar>
       <Drawer
@@ -110,13 +109,11 @@ export default function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon} >
-          <img src={ImagemLogo} alt='Logo da aplicação' />
+        <div className={classes.toolbarIcon}>
+          <img src={ImagemLogo} alt="Logo da aplicação" />
           <IconButton onClick={handleDrawerClose}>
-
             <ChevronLeftIcon />
           </IconButton>
-
         </div>
         <Divider />
         <List>{mainListItems}</List>
@@ -128,12 +125,10 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Route exact path="/app/perfil" component={Perfil} />
-            <Route exact path="/app/arquivos" component={Upload} />
-
             <Route exact path="/app/arquivos" component={Arquivos} />
-
             <Route exact path="/app/historico" component={Historico} />
-            <Route exact path="/app/formhistorico" component={FormHistorico} />
+            <Route exact path="/app/FormHistorico" component={FormHistorico} />
+            <Route exact path="/app/upload" component={Upload} />
           </Grid>
         </Container>
       </main>

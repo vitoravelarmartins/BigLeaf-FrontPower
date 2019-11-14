@@ -12,12 +12,13 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardAvatar from "../../components/Card/CardAvatar.js";
 import CardBody from "../../components/Card/CardBody.js";
 import CardFooter from "../../components/Card/CardFooter.js";
+import Avatar from "@material-ui/core/Avatar";
 
 import avatar from "../../assets/img/faces/marc.jpg";
 
-import api from "../../services/api"
+import api from "../../services/api";
 
-import { getLoggedUser } from "../../services/auth"
+import { getLoggedUser } from "../../services/auth";
 
 const styles = {
   cardCategoryWhite: {
@@ -41,90 +42,38 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function Perfil() {
-  const name = getLoggedUser().name
+  const name = getLoggedUser().name;
+  const email = getLoggedUser().email;
+  const nomeInicial = getLoggedUser().name.substr(0, 1);
+  const cpf = getLoggedUser().cpf;
+  const rg = getLoggedUser().rg;
+  const tipoSanguineo = getLoggedUser().tipoSanguineo;
+  const dataNasc = getLoggedUser().dataNasc.substr(0, 10);
 
   const classes = useStyles();
   return (
     <div>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={8}>
-          <Card>
-            <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Seu Profile</h4>
-              <p className={classes.cardCategoryWhite}></p>
-            </CardHeader >
-            <CardBody>
-              <GridContainer>
-
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText={name}
-                    id="username"
-                    value={name}
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Email "
-                    id="email-address"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Tipo Sanguineo"
-                    id="Tipo Sanguineo"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-
-              </GridContainer>
-              <GridContainer>
-
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <InputLabel style={{ color: "#AAAAAA" }}></InputLabel>
-                  <CustomInput
-                    labelText=""
-                    id="about-me"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5
-                    }}
-                  />
-                </GridItem>
-              </GridContainer>
-            </CardBody>
-            <CardFooter>
-              <Button color="primary">Update Profile</Button>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={12} sm={6} md={12}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#test" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
-              </a>
+              {
+                <Avatar
+                  aria-label="recipe"
+                  className={classes.avatar}
+                  style={{ backgroundColor: "red" }}
+                >
+                  {nomeInicial}
+                </Avatar>
+              }
             </CardAvatar>
             <CardBody profile>
-              <h4 className={classes.cardTitle}>{name}</h4>
-              <p className={classes.description}>
-                {"'"}In the end, there will be no one left. We are no longer innocent. We are lost from this world From home. We longer believe in such things. We only believe in war
-              </p>
+              <h1 className={classes.cardTitle}>{name}</h1>
+              <h3>E-Mail: {email}</h3>
+              <h3>CPF: {cpf}</h3>
+              <h3>RG: {rg}</h3>
+              <h3>Tipo Sanguineo: {tipoSanguineo}</h3>
+              <h3>Data De Nascimento: {dataNasc}</h3>
             </CardBody>
           </Card>
         </GridItem>

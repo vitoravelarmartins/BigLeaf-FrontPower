@@ -3,7 +3,6 @@ import Dropzone from "../dropzone/Dropzone";
 import "./Upload.css";
 import Progress from "../progress/Progress";
 
-
 class Upload extends Component {
   constructor(props) {
     super(props);
@@ -92,7 +91,6 @@ class Upload extends Component {
             style={{
               opacity:
                 uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-                
             }}
           />
         </div>
@@ -126,7 +124,7 @@ class Upload extends Component {
   render() {
     return (
       <div className="Upload">
-        <span className="Title">Upload Files</span>
+        <span className="Title">Carregar arquivos</span>
         <div className="Content">
           <div>
             <Dropzone
